@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Age Calculater</title>
+    <link rel="stylesheet" href="style.css">
+    <Script>
+        function getAge(){
+            let daysH=document.getElementById("date").value;
+           
+            let monthH=document.getElementById("month").value;
+            let yearH=document.getElementById("year").value;
+
+            var today=new Date();
+
+            let currentDay=today.getDate();
+            let currentMonth=today.getMonth()+1;
+            let currentYear=today.getFullYear();
+
+            if(daysH.value==""|| monthH.value==""||yearH.value==""){
+                 alert("please enter your Date of Birth properly to calculate your age");
+                 return false;
+            } 
+            var month = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+           
+            if(daysH > currentDay){
+                currentDay = currentDay + month[currentMonth - 1];
+                currentMonth = currentMonth - 1;
+            }
+
+            if(monthH > currentMonth){
+                currentMonth = currentMonth + 12;
+                currentYear = currentYear - 1;
+            }
+
+            var ageDays = currentDay - daysH;
+            var month = currentMonth - monthH;
+            var year = currentYear - yearH;
+            var messege = "Your current age is = " + ageDays + "days " +  month + "months " + year + "years"; 
+          alert(messege);
+
+   
+        }
+
+       
+    </Script>
+</head>
+<body>
+    <label for="input">Enter Your Date of Birth</label><br><br>
+    <input type="text" id="date" placeholder="date" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" maxlength="2" /><br><br>
+    <input type="text" id="month" placeholder="month" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" maxlength="2"/><br><br>
+    <input type="text" id="year" placeholder="year" onkeypress="return (event.charCode !=8 && event.charCode ==0 || ( event.charCode == 46 || (event.charCode >= 48 && event.charCode <= 57)))" maxlength="4"/><br><br>
+    <!-- <button id="calc-btn">Calculate Age</button> -->
+    <input type="button" value = "Total Age" onclick="getAge()" id="calc-btn" style="width: 150px;"></input>
+
+    <p id="show-age"></p>
+    <!-- <script src="code.js" type='text/javaScript'></script> -->
+    
+</body>
+</html>
